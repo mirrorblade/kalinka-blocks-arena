@@ -33,7 +33,7 @@
         {
             "label": "Run or Restart Server",
             "type": "shell",
-            "command": "docker run -it --restart always -d -p 27015:27015/tcp -p 27015:27015/udp -p 27020:27020/udp -p 27005:27005/udp -p 26900:26900/udp -v sourcemod-data:/app/cstrike/addons/sourcemod/data --name kalinka-server eum2o/kalinka-blocks-arena ./srcds_run -console -game cstrike +map awp_lego_2 -usercon +rcon_password $RCON_PASSWORD",
+            "command": "docker run -it --restart always -d -p 27015:27015/tcp -p 27015:27015/udp -p 27020:27020/udp -p 27005:27005/udp -p 26900:26900/udp -v sourcemod-data:/app/cstrike/addons/sourcemod/data --name kalinka-server eum2o/kalinka-blocks-arena ./srcds_run -console -game cstrike +map awp_lego_2_c -usercon +rcon_password $RCON_PASSWORD",
             "dependsOn": [
                 "Build Docker Image",
                 "Stop Server"
