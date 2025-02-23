@@ -2,6 +2,7 @@
 
 This folder contains plugins and their configurations. An example of plugin's structure:
 
+```
 ├── plugins
 │   ├── plugin1
 │   │   ├── cvars
@@ -17,6 +18,7 @@ This folder contains plugins and their configurations. An example of plugin's st
 │   └── plugin2
 │       └── plugins
 │           └── plugin2.smx
+```
 
 ## Plugin Loader
 This tool helps merging multiple plugins into specific folders. Files/folders in the output folder should be placed in the cstrike folder. Cvars folder must have file "config.cfg" that will have either plugin's cvars or executing another files with cvars.
