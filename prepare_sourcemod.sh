@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###
-### This script clears "cstrike_for_sourcemod_default/" and downloads both MMS and SM. 
+### This script delete previous versions of MM and SM if exists and downloads new versions of them. 
 ### Update the constants below to update the versions.
 ###
 
@@ -9,9 +9,8 @@
 mm_url="https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1333-linux.tar.gz"
 sm_url="https://sm.alliedmods.net/smdrop/1.13/sourcemod-1.13.0-git7214-linux.tar.gz"
 
-# Delete existing directory and create a fresh one
-rm -rf cstrike_for_sourcemod_default
-mkdir -p cstrike_for_sourcemod_default
+rm -r addons
+rm -r cfg/sourcemod
 
 # Function to download, extract, and clean up
 download_and_extract() {
@@ -22,7 +21,7 @@ download_and_extract() {
     wget "$url"
     
     # Extract and untar
-    tar -xzf "$filename" -C cstrike_for_sourcemod_default
+    tar -xzf "$filename"
     
     # Clean up
     rm "$filename"
@@ -34,4 +33,4 @@ download_and_extract "$mm_url"
 # Process SourceMod
 download_and_extract "$sm_url"
 
-echo "MetaMod and SourceMod have been downloaded, extracted, and cleaned up in cstrike_for_sourcemod_default"
+echo "MetaMod and SourceMod have been downloaded, extracted and cleared"

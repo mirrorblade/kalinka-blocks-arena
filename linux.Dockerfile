@@ -1,8 +1,8 @@
 FROM lacledeslan/gamesvr-cssource
 
-COPY --chown=CSSource:root /cstrike_for_sourcemod_default /app/cstrike
-COPY --chown=CSSource:root /cstrike_for_sourcemod_overwrite /app/cstrike
-COPY --chown=CSSource:root /cstrike /app/cstrike
+COPY --chown=CSSource:root / /app/cstrike
+
+RUN ["/app/cstrike/plugins/plugin_loader.sh", "/app/cstrike/plugins", "/app/cstrike"]
 
 USER CSSource
 
