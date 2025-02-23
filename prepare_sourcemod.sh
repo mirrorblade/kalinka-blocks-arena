@@ -9,8 +9,13 @@
 mm_url="https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1333-linux.tar.gz"
 sm_url="https://sm.alliedmods.net/smdrop/1.13/sourcemod-1.13.0-git7214-linux.tar.gz"
 
-rm -r addons
-rm -r cfg/sourcemod
+
+remove_if_exists() {
+    local dir="$1"
+    if [ -d "$dir" ]; then
+        rm -r "$dir"
+    fi
+}
 
 # Function to download, extract, and clean up
 download_and_extract() {
@@ -26,6 +31,9 @@ download_and_extract() {
     # Clean up
     rm "$filename"
 }
+
+remove_if_exists "addons"
+remove_if_exists "cfg/sourcemod"
 
 # Process MetaMod
 download_and_extract "$mm_url"

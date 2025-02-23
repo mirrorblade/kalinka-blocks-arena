@@ -1,2 +1,4 @@
-./addons/
-./cfg/sourcemod/
+# These two folders will be created when prepare_sourcemod.sh is executed.
+# No need to commit them as they will be created on the fly.
+addons/
+cfg/sourcemod/

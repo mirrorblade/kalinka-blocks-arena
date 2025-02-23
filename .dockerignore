@@ -1,5 +1,7 @@
 .gitignore
+.dockerignore
 .vscode
+.git
 prepare_sourcemod.sh
 **/*.md
 **/LICENSE

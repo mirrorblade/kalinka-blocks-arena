@@ -9,7 +9,7 @@ A Counter-Strike: Source server based on https://github.com/LacledesLAN/gamesvr-
 Check the VS Code tasks [tasks.json](./.vscode/tasks.json)
 
 ## Quick Links
-- Server config: [server.cfg](.//cfg/server.cfg)
+- Server config: [server.cfg](./cfg/server.cfg) (for plugin configs though, refer to [plugins/](./plugins/README.md))
 - Sourcemod admins: [admins_simple.ini](./plugins/addons/admins/configs/admins_simple.ini)
 
 ## Server Setup
