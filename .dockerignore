@@ -1,0 +1,6 @@
+.gitignore
+.vscode
+prepare_sourcemod.sh
+**/*.md
+**/LICENSE
+**/*Dockerfile
