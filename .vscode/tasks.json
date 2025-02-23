@@ -1,0 +1,70 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Prepare SourceMod",
+            "type": "shell",
+            "command": "./prepare_sourcemod.sh",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Docker Image",
+            "type": "shell",
+            "command": "docker pull lacledeslan/gamesvr-cssource; docker build . --rm -f linux.Dockerfile -t eum2o/kalinka-blocks-arena --no-cache",
+            "group": "build",
+            "problemMatcher": [],
+            "promptOnClose": false,
+            "dependsOn": ["Prepare SourceMod"]
+        },
+        {
+            "label": "Stop Server",
+            "type": "shell",
+            "command": "bash -c 'if docker ps -q --filter name=kalinka-server | grep -q .; then docker rm -f kalinka-server; fi'",
+            "group": "build",
+            "problemMatcher": [],
+            "promptOnClose": false
+        },
+        {
+            "label": "Run or Restart Server",
+            "type": "shell",
+            "command": "docker run -it --restart always -d -p 27015:27015/tcp -p 27015:27015/udp -p 27020:27020/udp -p 27005:27005/udp -p 26900:26900/udp -v sourcemod-data:/app/cstrike/addons/sourcemod/data --name kalinka-server eum2o/kalinka-blocks-arena ./srcds_run -console -game cstrike +map awp_lego_2 -usercon +rcon_password $RCON_PASSWORD",
+            "dependsOn": [
+                "Build Docker Image",
+                "Stop Server"
+            ],
+            "dependsOrder": "sequence",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always" // show only main terminal
+            }
+        },
+        {
+            "label": "Join Server Console",
+            "type": "shell",
+            "command": "docker attach kalinka-server",
+            "problemMatcher": [],
+            "promptOnClose": false
+        },
+        {
+            "label": "New Server Bash",
+            "type": "shell",
+            "command": "docker exec -it kalinka-server bash",
+            "problemMatcher": [],
+            "promptOnClose": false
+        },
+        {
+            "label": "Show Logs",
+            "type": "shell",
+            "command": "docker logs --tail 100 --follow kalinka-server",
+            "problemMatcher": [],
+            "promptOnClose": false
+        }
+    ]
+}
